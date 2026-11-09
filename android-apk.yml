@@ -1,0 +1,58 @@
+name: Gerar APK Android
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Configurar Android
+        uses: android-actions/setup-android@v3
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Instalar Capacitor
+        run: |
+          npm install @capacitor/core @capacitor/android
+          npm install -D @capacitor/cli
+
+      - name: Compilar aplicativo web
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+        run: npm run build
+
+      - name: Criar projeto Android
+        run: |
+          npx cap init "Guia Comercial Dia de Feira" "br.com.diadefeira.guia" --web-dir dist
+          npx cap add android
+          npx cap sync android
+
+      - name: Gerar APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Disponibilizar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Guia-Comercial-Dia-de-Feira-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
