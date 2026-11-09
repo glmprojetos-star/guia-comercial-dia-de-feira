@@ -1,0 +1,38 @@
+{
+  "background_color": "#ffffff",
+  "description": "O Guia Comercial Dia de Feira conecta consumidores a feirantes, comerciantes e prestadores de serviços do Espírito Santo. Descubra produtos, ofertas, contatos e redes sociais dos estabelecimentos participantes em um guia digital atualizado regularmente.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Guia Comercial Dia de Feira",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Dia de Feira",
+  "start_url": "/",
+  "theme_color": "#14532d",
+  "icons": [
+    {
+      "src": "https://eloquent-sunflower-e4a517.netlify.app/favicon.svg",
+      "type": "image/svg+xml",
+      "isSquare": false,
+      "isPng": false,
+      "isWebp": false,
+      "isJpg": false,
+      "width": 0,
+      "is512x512": false,
+      "is256x256": false,
+      "is192x192": false
+    },
+    {
+      "src": "https://eloquent-sunflower-e4a517.netlify.app/favicon.ico",
+      "type": "image/x-icon",
+      "isSquare": false,
+      "isPng": false,
+      "isWebp": false,
+      "isJpg": false,
+      "width": 0,
+      "is512x512": false,
+      "is256x256": false,
+      "is192x192": false
+    }
+  ],
+  "id": "/."
